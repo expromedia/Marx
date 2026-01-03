@@ -20,6 +20,7 @@ import {
   ArrowUpRight,
   ArrowDownRight
 } from 'lucide-react';
+import { SECONDARY_COLOR } from '../constants';
 
 const data = [
   { name: 'Mon', bookings: 4, revenue: 2400 },
@@ -34,7 +35,7 @@ const data = [
 const StatCard: React.FC<{ title: string; value: string; icon: any; trend: string; isPositive: boolean }> = ({ title, value, icon: Icon, trend, isPositive }) => (
   <div className="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-sm transition-transform hover:scale-[1.02]">
     <div className="flex items-center justify-between mb-4">
-      <div className="p-2 bg-sky-50 text-sky-600 rounded-lg">
+      <div className="p-2 bg-[#5B8FB1]/10 text-[#5B8FB1] rounded-lg">
         <Icon size={22} />
       </div>
       <div className={`flex items-center text-xs font-bold ${isPositive ? 'text-emerald-500' : 'text-rose-500'}`}>
@@ -70,18 +71,18 @@ const Overview: React.FC<{ role: UserRole }> = ({ role }) => {
               <AreaChart data={data}>
                 <defs>
                   <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.1}/>
-                    <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
+                    <stop offset="5%" stopColor={SECONDARY_COLOR} stopOpacity={0.1}/>
+                    <stop offset="95%" stopColor={SECONDARY_COLOR} stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} />
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '12px', color: '#fff', fontSize: '12px' }}
+                  contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '12px', color: '#fff', fontSize: '12px' }}
                   itemStyle={{ color: '#fff' }}
                 />
-                <Area type="monotone" dataKey="revenue" stroke="#0ea5e9" strokeWidth={3} fillOpacity={1} fill="url(#colorRev)" />
+                <Area type="monotone" dataKey="revenue" stroke={SECONDARY_COLOR} strokeWidth={3} fillOpacity={1} fill="url(#colorRev)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -97,9 +98,9 @@ const Overview: React.FC<{ role: UserRole }> = ({ role }) => {
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} />
                 <Tooltip 
                   cursor={{fill: '#f1f5f9'}}
-                  contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '12px', color: '#fff', fontSize: '12px' }}
+                  contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '12px', color: '#fff', fontSize: '12px' }}
                 />
-                <Bar dataKey="bookings" fill="#0ea5e9" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="bookings" fill={SECONDARY_COLOR} radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

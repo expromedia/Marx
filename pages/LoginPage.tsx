@@ -68,7 +68,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-8">
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-sky-500 rounded-2xl text-white font-bold text-[28px] shadow-xl shadow-sky-200 mb-3">L</div>
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-[#5B8FB1] rounded-2xl text-white font-bold text-[28px] shadow-xl shadow-[#5B8FB1]/20 mb-3">L</div>
           <h1 className="text-[29px] font-bold text-slate-900 tracking-tight leading-tight">Grand Port Hotel & Suites</h1>
           <p className="text-slate-500 mt-1 font-medium text-[15px]">Hotel Portal Management</p>
         </div>
@@ -77,14 +77,14 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           <div className="flex p-1 bg-slate-100 rounded-xl mb-6">
             <button 
               onClick={() => setRole(UserRole.ADMIN)}
-              className={`flex-1 flex items-center justify-center py-2.5 rounded-lg text-[13px] font-semibold transition-all ${role === UserRole.ADMIN ? 'bg-white text-sky-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`flex-1 flex items-center justify-center py-2.5 rounded-lg text-[13px] font-semibold transition-all ${role === UserRole.ADMIN ? 'bg-white text-[#5B8FB1] shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
             >
               <ShieldCheck size={16} className="mr-2" />
               Administrator
             </button>
             <button 
               onClick={() => setRole(UserRole.STAFF)}
-              className={`flex-1 flex items-center justify-center py-2.5 rounded-lg text-[13px] font-semibold transition-all ${role === UserRole.STAFF ? 'bg-white text-sky-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`flex-1 flex items-center justify-center py-2.5 rounded-lg text-[13px] font-semibold transition-all ${role === UserRole.STAFF ? 'bg-white text-[#5B8FB1] shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
             >
               <UserIcon size={16} className="mr-2" />
               Staff Member
@@ -98,7 +98,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                   type="email" 
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all outline-none text-slate-950 font-medium placeholder:text-slate-400 text-[13px]"
+                  className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#5B8FB1] focus:border-transparent transition-all outline-none text-slate-950 font-medium placeholder:text-slate-400 text-[13px]"
                   placeholder="Username / Email"
                   required
                 />
@@ -112,7 +112,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                   type="password" 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all outline-none text-slate-950 font-medium placeholder:text-slate-400 text-[13px]"
+                  className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#5B8FB1] focus:border-transparent transition-all outline-none text-slate-950 font-medium placeholder:text-slate-400 text-[13px]"
                   placeholder="Password"
                   required
                 />
@@ -130,7 +130,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                     type="number" 
                     value={captchaInput}
                     onChange={(e) => setCaptchaInput(e.target.value)}
-                    className="w-[30%] px-2 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none text-center font-bold text-slate-950 text-[13px]"
+                    className="w-[30%] px-2 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#5B8FB1] outline-none text-center font-bold text-slate-950 text-[13px]"
                     placeholder="Result"
                     required
                   />
@@ -157,7 +157,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               disabled={!isCaptchaCorrect}
               className={`w-full font-bold py-3.5 rounded-xl shadow-lg transition-all active:scale-[0.98] text-[14px] ${
                 isCaptchaCorrect 
-                ? 'bg-sky-500 hover:bg-sky-600 text-white shadow-sky-100 cursor-pointer' 
+                ? 'bg-[#5B8FB1] hover:bg-[#4a7a99] text-white shadow-[#5B8FB1]/10 cursor-pointer' 
                 : 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none'
               }`}
             >

@@ -38,8 +38,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ label, icon: Icon, isActive, 
         : 'p-3 justify-center'
     } ${
       isActive 
-        ? 'bg-sky-500 text-white shadow-md shadow-sky-200' 
-        : 'text-slate-700 hover:bg-sky-50'
+        ? 'bg-[#5B8FB1] text-white shadow-md shadow-[#5B8FB1]/20' 
+        : 'text-slate-700 hover:bg-[#5B8FB1]/5'
     }`}
   >
     <Icon size={20} className="shrink-0" />
@@ -100,10 +100,9 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     <>
       <div className={`p-6 flex items-center ${isOpen ? 'justify-between' : 'flex-col space-y-4 justify-center'}`}>
         <div className="flex items-center overflow-hidden">
-          <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center text-white font-bold shrink-0">L</div>
+          <div className="w-8 h-8 bg-[#5B8FB1] rounded-lg flex items-center justify-center text-white font-bold shrink-0">L</div>
           {isOpen && <span className="text-xl font-bold tracking-tight text-slate-950 ml-2 truncate">LMNTS</span>}
         </div>
-        {/* Only show close button in sidebar on desktop toggle or mobile view */}
         <button 
           onClick={() => {
             if (window.innerWidth < 1024) {
@@ -170,22 +169,21 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           </div>
           
           <div className="flex items-center space-x-2 sm:space-x-6">
-            {/* User Profile Section with Dropdown */}
             <div className="relative" ref={profileRef}>
               <div 
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
                 className="flex items-center space-x-2 sm:space-x-3 pl-2 sm:pl-6 border-l border-slate-200 cursor-pointer group"
               >
                 <div className="text-right hidden sm:block">
-                  <p className="text-sm font-bold text-slate-950 group-hover:text-sky-600 transition-colors">{user.displayName}</p>
-                  <p className="text-[10px] text-sky-600 font-bold uppercase tracking-widest">{user.role}</p>
+                  <p className="text-sm font-bold text-slate-950 group-hover:text-[#5B8FB1] transition-colors">{user.displayName}</p>
+                  <p className="text-[10px] text-[#5B8FB1] font-bold uppercase tracking-widest">{user.role}</p>
                 </div>
                 <div className="relative shrink-0">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-sky-50 flex items-center justify-center border-2 border-sky-100 transition-all group-hover:border-sky-500 overflow-hidden">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#5B8FB1]/5 flex items-center justify-center border-2 border-[#5B8FB1]/10 transition-all group-hover:border-[#5B8FB1] overflow-hidden">
                     {user.role === UserRole.ADMIN ? (
-                      <ShieldCheck size={20} className="text-sky-600" />
+                      <ShieldCheck size={20} className="text-[#5B8FB1]" />
                     ) : (
-                      <UserIcon size={20} className="text-sky-600" />
+                      <UserIcon size={20} className="text-[#5B8FB1]" />
                     )}
                   </div>
                   <div className="absolute -bottom-1 -right-1 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-emerald-500 border-2 border-white rounded-full"></div>
@@ -202,11 +200,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   </div>
                   <div className="py-1">
                     <button className="w-full flex items-center space-x-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors text-left">
-                      <UserIcon size={18} />
+                      <UserIcon size={18} className="text-[#5B8FB1]" />
                       <span className="font-medium">My Profile</span>
                     </button>
                     <button className="w-full flex items-center space-x-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors text-left">
-                      <Settings size={18} />
+                      <Settings size={18} className="text-[#5B8FB1]" />
                       <span className="font-medium">System Settings</span>
                     </button>
                   </div>
@@ -225,7 +223,6 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           </div>
         </header>
 
-        {/* Scrollable Content Area */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-8 bg-white">
           <div className="max-w-7xl mx-auto">
             {children}

@@ -32,7 +32,7 @@ const Rooms: React.FC = () => {
               placeholder="Search by room number or amenities..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500 outline-none transition-all text-slate-900"
+              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#5B8FB1] outline-none transition-all text-slate-900"
             />
           </div>
         </div>
@@ -43,7 +43,7 @@ const Rooms: React.FC = () => {
             <select 
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-sky-500 text-sm font-medium text-slate-900"
+              className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#5B8FB1] text-sm font-medium text-slate-900"
             >
               <option value="All">All Types</option>
               {Object.values(RoomType).map(type => <option key={type} value={type}>{type}</option>)}
@@ -55,7 +55,7 @@ const Rooms: React.FC = () => {
             <select 
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-sky-500 text-sm font-medium text-slate-900"
+              className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#5B8FB1] text-sm font-medium text-slate-900"
             >
               <option value="All">All Status</option>
               {Object.values(RoomStatus).map(status => <option key={status} value={status}>{status}</option>)}
@@ -65,7 +65,7 @@ const Rooms: React.FC = () => {
           <div className="space-y-1.5 w-full md:w-48">
             <div className="flex justify-between">
               <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Max Price</label>
-              <span className="text-xs font-bold text-sky-600">${maxPrice}</span>
+              <span className="text-xs font-bold text-[#5B8FB1]">${maxPrice}</span>
             </div>
             <input 
               type="range" 
@@ -74,7 +74,7 @@ const Rooms: React.FC = () => {
               step="50"
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
-              className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-sky-500"
+              className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#5B8FB1]"
             />
           </div>
         </div>
@@ -98,16 +98,16 @@ const Rooms: React.FC = () => {
             <div className="p-6">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-xl font-bold text-slate-950">Room {room.number}</h3>
-                <span className="text-sky-600 font-bold text-lg">${room.price}<span className="text-xs text-slate-400 font-medium">/night</span></span>
+                <span className="text-[#5B8FB1] font-bold text-lg">${room.price}<span className="text-xs text-slate-400 font-medium">/night</span></span>
               </div>
               
               <div className="flex items-center text-slate-500 text-sm mb-4 space-x-4">
                 <div className="flex items-center">
-                  <Bed size={16} className="mr-1.5" />
+                  <Bed size={16} className="mr-1.5 text-[#5B8FB1]" />
                   {room.type}
                 </div>
                 <div className="flex items-center">
-                  <Activity size={16} className="mr-1.5" />
+                  <Activity size={16} className="mr-1.5 text-[#5B8FB1]" />
                   Floor {room.number.charAt(0)}
                 </div>
               </div>
@@ -122,20 +122,11 @@ const Rooms: React.FC = () => {
 
               <div className="mt-6 flex space-x-2">
                 <button className="flex-1 py-2.5 text-sm font-bold border border-slate-200 hover:bg-slate-50 rounded-lg transition-colors text-slate-900">Details</button>
-                <button className="flex-1 py-2.5 text-sm font-bold bg-sky-500 text-white hover:bg-sky-600 rounded-lg transition-colors">Manage</button>
+                <button className="flex-1 py-2.5 text-sm font-bold bg-[#5B8FB1] text-white hover:bg-[#4a7a99] rounded-lg transition-colors">Manage</button>
               </div>
             </div>
           </div>
         ))}
-        {filteredRooms.length === 0 && (
-          <div className="col-span-full py-20 text-center">
-            <div className="bg-slate-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
-              <Filter size={32} />
-            </div>
-            <h3 className="text-xl font-bold text-slate-900">No rooms found</h3>
-            <p className="text-slate-500">Try adjusting your filters to find what you're looking for.</p>
-          </div>
-        )}
       </div>
     </div>
   );

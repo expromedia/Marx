@@ -13,7 +13,7 @@ const CRM: React.FC = () => {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Guest Relationship Management</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Guest Relationship Management</h2>
           <p className="text-slate-500">Monitor guest preferences and loyalty metrics.</p>
         </div>
         <div className="relative">
@@ -21,23 +21,23 @@ const CRM: React.FC = () => {
           <input 
             type="text" 
             placeholder="Search guests..." 
-            className="pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl w-full md:w-80 outline-none focus:ring-2 focus:ring-sky-500"
+            className="pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl w-full md:w-80 outline-none focus:ring-2 focus:ring-[#5B8FB1]"
           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {guests.map(guest => (
-          <div key={guest.id} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div key={guest.id} className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-sky-100 dark:bg-sky-900/30 text-sky-600 rounded-2xl flex items-center justify-center font-bold text-xl mr-4 border border-sky-200 dark:border-sky-800">
+                <div className="w-12 h-12 bg-[#5B8FB1]/10 text-[#5B8FB1] rounded-2xl flex items-center justify-center font-bold text-xl mr-4 border border-[#5B8FB1]/20">
                   {guest.name.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">{guest.name}</h3>
+                  <h3 className="text-lg font-bold text-slate-900">{guest.name}</h3>
                   <div className="flex items-center text-slate-500 text-xs mt-1 font-medium">
-                    <Mail size={12} className="mr-1" />
+                    <Mail size={12} className="mr-1 text-[#5B8FB1]" />
                     {guest.email}
                   </div>
                 </div>
@@ -49,23 +49,23 @@ const CRM: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 py-4 border-t border-slate-100 dark:border-slate-800">
+            <div className="grid grid-cols-2 gap-4 py-4 border-t border-slate-100">
               <div>
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Total Stays</p>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">{guest.stays}</p>
+                <p className="text-lg font-bold text-slate-900">{guest.stays}</p>
               </div>
               <div>
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Total Spend</p>
-                <p className="text-lg font-bold text-sky-600">{guest.spent}</p>
+                <p className="text-lg font-bold text-[#5B8FB1]">{guest.spent}</p>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
               <div className="flex items-center text-xs text-slate-500 font-medium">
-                <MapPin size={14} className="mr-1" />
+                <MapPin size={14} className="mr-1 text-[#5B8FB1]" />
                 {guest.location}
               </div>
-              <button className="text-sky-500 hover:text-sky-600 font-bold text-xs">View Profile</button>
+              <button className="text-[#5B8FB1] hover:text-[#4a7a99] font-bold text-xs">View Profile</button>
             </div>
           </div>
         ))}

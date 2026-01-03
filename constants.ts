@@ -1,7 +1,8 @@
 
 import { RoomType, RoomStatus, Room, InventoryItem, Feedback, FeedbackCategory } from './types';
 
-export const THEME_COLOR = '#0ea5e9'; // Ocean Blue
+export const THEME_COLOR = '#5B8FB1'; // Updated to Primary color
+export const SECONDARY_COLOR = '#66A9D4'; // Secondary color for charts/graphs
 
 export const MOCK_ROOMS: Room[] = [
   { id: '1', number: '101', type: RoomType.SINGLE, price: 150, status: RoomStatus.AVAILABLE, amenities: ['Wifi', 'TV', 'Coffee Maker'], image: 'https://picsum.photos/400/300?random=1' },
