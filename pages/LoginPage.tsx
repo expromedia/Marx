@@ -100,10 +100,10 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, theme, toggleTheme }) =>
         <div className="relative z-10 w-full flex flex-col justify-center p-12 lg:p-16 text-white h-full">
           <div className="max-w-xl">
             <h3 className="text-3xl lg:text-5xl font-extrabold mb-6 leading-tight">
-              Hospitality Excellence, Reimagined.
+              Hospitality Excellence. <span className="text-[#5B8FB1]">Reimagined.</span>
             </h3>
             <p className="text-base lg:text-xl text-slate-300 font-medium mb-12 leading-relaxed">
-              Marx is an integrated ecosystem designed to synchronize every touchpoint of the guest journey with precision and care.
+              An integrated ecosystem designed to synchronize every touchpoint of the guest journey with precision and care.
             </p>
 
             <div className="grid grid-cols-2 gap-8">
