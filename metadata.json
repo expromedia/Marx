@@ -1,5 +1,5 @@
 {
-  "name": "Marx – A Hotel Portal System",
+  "name": "Marx",
   "description": "A comprehensive hotel management system for Marx Hotel & Suites featuring reservations, housekeeping, inventory, CRM, and AI-driven workflow automations.",
   "requestFramePermissions": [
     "camera"
