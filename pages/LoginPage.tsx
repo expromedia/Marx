@@ -272,7 +272,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, theme, toggleTheme }) =>
           </form>
 
           <p className="text-center text-slate-400 dark:text-slate-500 text-[9px] mt-10 font-bold uppercase tracking-widest whitespace-nowrap">
-            © {displayYear} Marx Hotel & Suites. All Rights Reserved.
+            © {displayYear} Marx AI-HMS Solution. All Rights Reserved.
             <a 
               href="https://www.expromedia.com.ng" 
               target="_blank" 

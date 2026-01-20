@@ -19,7 +19,8 @@ import {
   Settings,
   ChevronDown,
   Sun,
-  Moon
+  Moon,
+  AlertCircle
 } from 'lucide-react';
 
 interface SidebarItemProps {
@@ -71,6 +72,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -100,6 +102,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   ];
 
   const filteredMenuItems = menuItems.filter(item => item.roles.includes(user.role));
+
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+    setIsProfileOpen(false);
+  };
 
   const SidebarContent = ({ isOpen, isMobile = false }: { isOpen: boolean; isMobile?: boolean }) => (
     <div className="flex flex-col h-full bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-colors duration-300">
@@ -133,7 +140,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
       <div className="p-4 border-t border-slate-100 dark:border-slate-800">
         <button
-          onClick={onLogout}
+          onClick={handleLogoutClick}
           className={`w-full flex items-center rounded-xl px-4 py-3 space-x-3 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/10 transition-all font-semibold text-sm ${!isOpen && 'justify-center px-0'}`}
         >
           <LogOut size={20} className="shrink-0" />
@@ -150,6 +157,37 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm lg:hidden transition-opacity duration-300"
           onClick={() => setIsMobileSidebarOpen(false)}
         />
+      )}
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white dark:bg-slate-900 w-full max-w-sm rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-8 text-center animate-in zoom-in-95 duration-200">
+            <div className="w-16 h-16 bg-rose-50 dark:bg-rose-900/20 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <AlertCircle size={32} />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">End Your Session?</h3>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mb-8">Are you sure you want to sign out? You will need to verify your credentials to access the portal again.</p>
+            
+            <div className="grid grid-cols-2 gap-3">
+              <button 
+                onClick={() => setShowLogoutModal(false)}
+                className="py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all text-sm"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => {
+                  setShowLogoutModal(false);
+                  onLogout();
+                }}
+                className="py-3 px-4 rounded-xl bg-rose-500 text-white font-bold hover:bg-rose-600 transition-all shadow-lg shadow-rose-500/20 text-sm"
+              >
+                Yes, Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       <aside className={`fixed inset-y-0 left-0 z-50 w-72 transform lg:hidden transition-transform duration-300 ease-in-out ${isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
@@ -224,7 +262,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   )}
                   <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
                   <button 
-                    onClick={onLogout}
+                    onClick={handleLogoutClick}
                     className="w-full flex items-center space-x-3 px-4 py-2.5 text-sm font-semibold text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/10 rounded-xl transition-all"
                   >
                     <LogOut size={18} />
