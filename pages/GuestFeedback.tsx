@@ -28,28 +28,28 @@ const FeedbackCard: React.FC<{ feedback: Feedback; onStatusChange?: (id: string,
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'New': return 'bg-[#5B8FB1]/10 text-[#5B8FB1]';
-      case 'Reviewed': return 'bg-amber-100 text-amber-600';
-      case 'Resolved': return 'bg-emerald-100 text-emerald-600';
-      default: return 'bg-slate-100 text-slate-600';
+      case 'New': return 'bg-[#5B8FB1]/10 dark:bg-[#5B8FB1]/20 text-[#5B8FB1]';
+      case 'Reviewed': return 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400';
+      case 'Resolved': return 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400';
+      default: return 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400';
     }
   };
 
   return (
-    <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col h-full hover:shadow-md transition-all">
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-500">
+          <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center font-bold text-slate-500 dark:text-slate-400">
             {feedback.guestName.charAt(0)}
           </div>
           <div>
-            <h4 className="font-bold text-slate-900 leading-tight">{feedback.guestName}</h4>
-            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{feedback.date}</p>
+            <h4 className="font-bold text-slate-900 dark:text-white leading-tight transition-colors">{feedback.guestName}</h4>
+            <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">{feedback.date}</p>
           </div>
         </div>
         <div className="flex">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} size={14} className={i < feedback.rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200'} />
+            <Star key={i} size={14} className={i < feedback.rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200 dark:text-slate-700'} />
           ))}
         </div>
       </div>
@@ -58,22 +58,22 @@ const FeedbackCard: React.FC<{ feedback: Feedback; onStatusChange?: (id: string,
         <div className="flex items-center text-[10px] font-bold text-[#5B8FB1] uppercase tracking-widest mb-2">
           {getCategoryIcon(feedback.category)}
           <span className="ml-1.5">{feedback.category}</span>
-          {feedback.roomNumber && <span className="ml-2 px-1.5 py-0.5 bg-slate-100 rounded text-slate-500">Room {feedback.roomNumber}</span>}
-          {feedback.staffName && <span className="ml-2 px-1.5 py-0.5 bg-slate-100 rounded text-slate-500">Staff: {feedback.staffName}</span>}
+          {feedback.roomNumber && <span className="ml-2 px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-slate-500 dark:text-slate-400">Room {feedback.roomNumber}</span>}
+          {feedback.staffName && <span className="ml-2 px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-slate-500 dark:text-slate-400">Staff: {feedback.staffName}</span>}
         </div>
-        <p className="text-sm text-slate-600 italic leading-relaxed">
+        <p className="text-sm text-slate-600 dark:text-slate-300 italic leading-relaxed">
           "{feedback.comment}"
         </p>
       </div>
 
-      <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+      <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between transition-colors">
         <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${getStatusColor(feedback.status)}`}>
           {feedback.status}
         </span>
         {isAdmin && feedback.status !== 'Resolved' && (
           <button 
             onClick={() => onStatusChange?.(feedback.id, 'Resolved')}
-            className="text-[#5B8FB1] hover:text-[#4a7a99] text-xs font-bold flex items-center"
+            className="text-[#5B8FB1] hover:text-[#4a7a99] text-xs font-bold flex items-center transition-colors"
           >
             <CheckCircle size={14} className="mr-1" /> Mark Resolved
           </button>
@@ -138,8 +138,8 @@ const GuestFeedback: React.FC<{ user: User }> = ({ user }) => {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Guest Experiences</h2>
-          <p className="text-slate-500">Monitor ratings and feedback to improve Grand Port services.</p>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white transition-colors">Guest Experiences</h2>
+          <p className="text-slate-500 dark:text-slate-400">Monitor ratings and feedback to improve Marx Hotel & Suites services.</p>
         </div>
         <button 
           onClick={() => setIsModalOpen(true)}
@@ -151,43 +151,43 @@ const GuestFeedback: React.FC<{ user: User }> = ({ user }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Average Rating</p>
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-center transition-colors">
+          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Average Rating</p>
           <div className="flex items-center justify-center space-x-2">
-            <span className="text-3xl font-bold text-slate-900">{stats.average}</span>
+            <span className="text-3xl font-bold text-slate-900 dark:text-white transition-colors">{stats.average}</span>
             <Star className="text-amber-400 fill-amber-400" size={24} />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Total Reviews</p>
-          <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-center transition-colors">
+          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Total Reviews</p>
+          <p className="text-3xl font-bold text-slate-900 dark:text-white transition-colors">{stats.total}</p>
         </div>
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Resolved Issues</p>
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-center transition-colors">
+          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Resolved Issues</p>
           <p className="text-3xl font-bold text-emerald-500">{stats.resolved}</p>
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-4 items-end bg-white p-6 rounded-2xl border border-slate-200">
+      <div className="flex flex-col md:flex-row gap-4 items-end bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 transition-colors">
         <div className="flex-1 space-y-2">
-          <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Search Reviews</label>
+          <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Search Reviews</label>
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={18} />
             <input 
               type="text" 
               placeholder="Guest name or comment keywords..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-[#5B8FB1]"
+              className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:ring-2 focus:ring-[#5B8FB1] text-slate-900 dark:text-white transition-colors"
             />
           </div>
         </div>
         <div className="space-y-2 w-full md:w-48">
-          <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Category</label>
+          <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Category</label>
           <select 
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-[#5B8FB1]"
+            className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:ring-2 focus:ring-[#5B8FB1] text-slate-900 dark:text-white transition-colors"
           >
             <option value="All">All Categories</option>
             {Object.values(FeedbackCategory).map(cat => <option key={cat} value={cat}>{cat}</option>)}
@@ -207,14 +207,14 @@ const GuestFeedback: React.FC<{ user: User }> = ({ user }) => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden border border-slate-200">
-            <div className="p-6 border-b border-slate-100 flex justify-between items-center">
-              <h3 className="text-xl font-bold text-slate-900 flex items-center">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 dark:bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white dark:bg-slate-900 w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800 transition-colors">
+            <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center transition-colors">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center">
                 <MessageSquarePlus className="mr-2 text-[#5B8FB1]" />
                 Record Guest Feedback
               </h3>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600">
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-white transition-colors">
                 <X size={24} />
               </button>
             </div>
@@ -222,25 +222,25 @@ const GuestFeedback: React.FC<{ user: User }> = ({ user }) => {
             <form onSubmit={handleAddFeedback} className="p-8 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="block text-sm font-bold text-slate-700">Guest Name</label>
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300">Guest Name</label>
                   <input 
                     required
                     type="text" 
                     value={newFeedback.guestName}
                     onChange={(e) => setNewFeedback({...newFeedback, guestName: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-[#5B8FB1]"
+                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-[#5B8FB1] text-slate-900 dark:text-white transition-colors"
                     placeholder="Enter full name"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-sm font-bold text-slate-700">Rating (1-5)</label>
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300">Rating (1-5)</label>
                   <div className="flex space-x-2">
                     {[1, 2, 3, 4, 5].map(star => (
                       <button 
                         key={star}
                         type="button"
                         onClick={() => setNewFeedback({...newFeedback, rating: star})}
-                        className={`p-2 rounded-lg transition-all ${newFeedback.rating >= star ? 'text-amber-400' : 'text-slate-200'}`}
+                        className={`p-2 rounded-lg transition-all ${newFeedback.rating >= star ? 'text-amber-400' : 'text-slate-200 dark:text-slate-700'}`}
                       >
                         <Star size={24} fill={newFeedback.rating >= star ? 'currentColor' : 'transparent'} />
                       </button>
@@ -249,11 +249,22 @@ const GuestFeedback: React.FC<{ user: User }> = ({ user }) => {
                 </div>
               </div>
 
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300">Comment</label>
+                <textarea 
+                  required
+                  value={newFeedback.comment}
+                  onChange={(e) => setNewFeedback({...newFeedback, comment: e.target.value})}
+                  className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-[#5B8FB1] text-slate-900 dark:text-white min-h-[100px] transition-colors"
+                  placeholder="Guest's feedback description..."
+                />
+              </div>
+
               <div className="flex space-x-4 pt-4">
                 <button 
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 py-3 text-sm font-bold text-slate-500 hover:bg-slate-100 rounded-xl transition-colors"
+                  className="flex-1 py-3 text-sm font-bold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
                 >
                   Cancel
                 </button>

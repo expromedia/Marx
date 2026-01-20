@@ -15,31 +15,42 @@ import GuestFeedback from './pages/GuestFeedback';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(() => {
-    const stored = localStorage.getItem('lmnts_user');
+    const stored = localStorage.getItem('marx_user');
     return stored ? JSON.parse(stored) : null;
   });
   
-  // Disable dark mode for now as requested. 
-  // We force light mode and remove the toggle functionality.
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const storedTheme = localStorage.getItem('marx_theme');
+    return (storedTheme as 'light' | 'dark') || 'light';
+  });
+
   const [activeTab, setActiveTab] = useState('Overview');
 
   useEffect(() => {
-    // Always ensure light mode is active
-    document.documentElement.classList.remove('dark');
-  }, []);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('marx_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
 
   const handleLogin = (userData: User) => {
     setUser(userData);
-    localStorage.setItem('lmnts_user', JSON.stringify(userData));
+    localStorage.setItem('marx_user', JSON.stringify(userData));
   };
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem('lmnts_user');
+    localStorage.removeItem('marx_user');
   };
 
   if (!user) {
-    return <LoginPage onLogin={handleLogin} />;
+    return <LoginPage onLogin={handleLogin} theme={theme} toggleTheme={toggleTheme} />;
   }
 
   const renderContent = () => {
@@ -50,7 +61,8 @@ const App: React.FC = () => {
       case 'Housekeeping': return <Housekeeping />;
       case 'Inventory': return <Inventory />;
       case 'CRM': return <CRM />;
-      case 'Finance': return <Finance />;
+      // Added theme prop to Finance component
+      case 'Finance': return <Finance theme={theme} />;
       case 'AI Workflows': return <AIWorkflows />;
       case 'Guest Feedback': return <GuestFeedback user={user} />;
       default: return <Overview role={user.role} />;
@@ -58,13 +70,14 @@ const App: React.FC = () => {
   };
 
   return (
-    // Dashboard background set to white as requested
-    <div className="min-h-screen bg-white text-slate-900 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-200">
       <DashboardLayout
         user={user}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onLogout={handleLogout}
+        theme={theme}
+        toggleTheme={toggleTheme}
       >
         {renderContent()}
       </DashboardLayout>

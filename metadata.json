@@ -1,6 +1,6 @@
 {
-  "name": "LMNTS – A Hotel Portal System",
-  "description": "A comprehensive hotel management system for Grand Port Hotel & Suites featuring reservations, housekeeping, inventory, CRM, and AI-driven workflow automations.",
+  "name": "Marx – A Hotel Portal System",
+  "description": "A comprehensive hotel management system for Marx Hotel & Suites featuring reservations, housekeeping, inventory, CRM, and AI-driven workflow automations.",
   "requestFramePermissions": [
     "camera"
   ]

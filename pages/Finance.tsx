@@ -25,16 +25,21 @@ const categoryData = [
 
 const COLORS = ['#5B8FB1', '#66A9D4', '#7FB3D5', '#A9CCE3'];
 
-const Finance: React.FC = () => {
+// Added FinanceProps interface to handle theme
+interface FinanceProps {
+  theme: 'light' | 'dark';
+}
+
+const Finance: React.FC<FinanceProps> = ({ theme }) => {
   return (
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Finance & Analytics</h2>
-          <p className="text-slate-500">Comprehensive financial oversight and reporting.</p>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white transition-colors">Finance & Analytics</h2>
+          <p className="text-slate-500 dark:text-slate-400">Comprehensive financial oversight and reporting.</p>
         </div>
         <div className="flex items-center space-x-3">
-          <button className="flex items-center space-x-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-all">
+          <button className="flex items-center space-x-2 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
             <Calendar size={16} className="text-[#5B8FB1]" />
             <span>Last 30 Days</span>
           </button>
@@ -46,10 +51,10 @@ const Finance: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm col-span-2">
+        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm col-span-2 transition-colors">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-bold text-slate-900">Monthly Revenue Flow</h3>
-            <div className="flex items-center text-emerald-500 font-bold text-sm bg-emerald-50 px-3 py-1 rounded-full">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">Monthly Revenue Flow</h3>
+            <div className="flex items-center text-emerald-500 font-bold text-sm bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1 rounded-full">
               <TrendingUp size={16} className="mr-1.5" />
               +15.2%
             </div>
@@ -57,11 +62,11 @@ const Finance: React.FC = () => {
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={revenueData}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
+                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '12px', color: '#fff' }}
+                  contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '12px', color: '#fff' }}
                 />
                 <Area type="monotone" dataKey="revenue" stroke={SECONDARY_COLOR} strokeWidth={4} fillOpacity={0.1} fill={SECONDARY_COLOR} />
               </AreaChart>
@@ -69,8 +74,8 @@ const Finance: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-          <h3 className="text-lg font-bold text-slate-900 mb-8 text-center">Revenue by Category</h3>
+        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-8 text-center">Revenue by Category</h3>
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -88,7 +93,8 @@ const Finance: React.FC = () => {
                   ))}
                 </Pie>
                 <Tooltip />
-                <Legend layout="horizontal" verticalAlign="bottom" align="center" />
+                {/* Fixed the 'theme' reference by accepting it as a prop */}
+                <Legend layout="horizontal" verticalAlign="bottom" align="center" wrapperStyle={{ color: theme === 'dark' ? '#94a3b8' : '#64748b' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -102,9 +108,9 @@ const Finance: React.FC = () => {
           { label: 'Net Profit', value: '$42,300', color: 'emerald' },
           { label: 'Operating Costs', value: '$18,900', color: 'rose' }
         ].map((stat, i) => (
-          <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-            <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">{stat.label}</p>
-            <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
+          <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+            <p className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">{stat.label}</p>
+            <p className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</p>
           </div>
         ))}
       </div>
